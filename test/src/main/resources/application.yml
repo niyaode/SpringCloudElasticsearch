@@ -1,0 +1,41 @@
+server:
+  port: 9000
+
+logging:
+  level: {org.springframework.security: DEBUG,com.example: debug}
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: goods-pay-provider
+  datasource:
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver # com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/wei_go_goods_model?useUnicode=true&serverTimezone=Asia/Shanghai&useSSL=false&autoReconnect=true
+  jpa:
+    show-sql: true
+    hibernate:
+      properties: {hibernate.format-sql: true}
+    #      ddl-auto: update
+  data:
+    elasticsearch:
+      cluster-name: docker-cluster
+      cluster-nodes: 39.98.232.94:9300
+      repositories:
+        enabled: true
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 30
+    prefer-ip-address: true
+    instance-id: test-provider
+  client:
+#    healthcheck:
+#      enabled: true
+    service-url:
+      defaultZone: http://admin:123456@127.0.0.1:7000/eureka
+    proxy-user-name: admin
+    proxy-password: 123456
+
